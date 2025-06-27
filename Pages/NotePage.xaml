@@ -1,0 +1,74 @@
+﻿<Page x:Class="Gubaeva.Pages.NotePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Gubaeva.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NotePage" FontFamily="Times New Roman" FontSize="16">
+
+    <Grid Margin="10">
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Заметки" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Сортировка" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" />
+        <ComboBox x:Name="cmbCategory" ItemsSource="{Binding categories}" SelectionChanged="cmbCategory_SelectionChanged" Width="200" Height="40" Grid.Row="1" HorizontalAlignment="Left" Margin="100 0 0 0" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="AddNoteButton" Content="Добавить заметку" VerticalAlignment="Center" Width="200" Height="30" HorizontalAlignment="Right" Click="AddNoteButton_Click" Grid.Row="1"/>
+        <Button x:Name="btnRefresh" Content="Обновить" VerticalAlignment="Center" Width="200" Height="30" Click="btnRefresh_Click" Grid.Row="1" HorizontalAlignment="Right" Margin="0 0 210 0"/>
+        <ScrollViewer MinHeight="600" Grid.Row="2">
+            <ListView x:Name="lvNote" ItemsSource="{Binding notes}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название" Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding title}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Категория" Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Categories.name}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Описание" Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding content}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="240">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="btnEdit" Content="Ред" Click="btnEdit_Click" Margin="0 0 5 0"/>
+                                        <Button x:Name="btnDelete" Content="×" Click="btnDelete_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <!--vmvmvmvmvmvmvmvmvmvmv-->
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</Page>
